@@ -5,8 +5,11 @@ import MovieList from '../MovieList'
 const FilterableMovieList = () => {
   return (
     <div className="filterable-movie-list">
-      <SearchBar name="searchBar" value="dummy value" onChange={() => {}} />
-      <MovieList movieList={[]}/>
+      <SearchBar
+        name="searchBar"
+        value="dummy value"
+        onChange={() => { }} />
+      <MovieList movieList={[]} />
     </div>
   )
 }

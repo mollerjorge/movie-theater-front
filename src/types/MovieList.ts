@@ -1,7 +1,5 @@
-import MovieType from './Movie'
+import { MovieType } from './Movie'
 
-type MovieListType = {
-  movieList: MovieType[];
-};
-
-export default MovieListType
+export type MovieListType = {
+  movieList: MovieType[]
+}

@@ -9,7 +9,13 @@ type InputProps = {
 };
 
 const Input: React.FC<InputProps> = ({ name, value, onChange }) => {
-  return <input name={name} value={value} onChange={onChange} />;
+  return (
+    <input
+    name={name}
+    value={value}
+    onChange={onChange}
+    />
+  )
 };
 
 export default Input;
