@@ -1,10 +1,11 @@
 import React from 'react'
-import { IntlProvider, useIntl } from 'react-intl'
+import { IntlProvider } from 'react-intl'
 import flatten from 'flat'
 import AppLocale from './languageProvider'
+import FilterableMovieList from './components/FilterableMovieList'
 
 const App = () => {
-  const currentLocale = navigator.language
+  const currentLocale: string = navigator.language
   const currentAppLocale = AppLocale[currentLocale]
 
   return (
@@ -12,18 +13,9 @@ const App = () => {
       locale={currentLocale}
       messages={flatten(currentAppLocale.messages)}
     >
-      <SearchBar />
+      <FilterableMovieList />
     </IntlProvider>
   )
-}
-
-const SearchBar = () => {
-  const intl = useIntl()
-  const searchBarPlaceholder = intl.formatMessage({
-    id: 'home.searchBarPlaceholder'
-  })
-
-  return <input placeholder={searchBarPlaceholder} />
 }
 
 export default App
