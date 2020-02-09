@@ -5,8 +5,12 @@ export default class MovieDBApiService {
     throw new Error('MovieDBApiService methods are static')
   }
 
-  static list(resource) {
-    return axiosMovieApi.get(`/${resource}`)
+  static list(resource, params) {
+    return axiosMovieApi.get(`/${resource}`, {
+      params: {
+        ...params
+      }
+    })
   }
 
   static create(resource, data) {
