@@ -1,5 +1,3 @@
 export default {
-  home: {
-    searchBarPlaceholder: 'Search movie by name or keyword'
-  }
+  searchBarPlaceholder: 'Search movie by name or keyword'
 }
