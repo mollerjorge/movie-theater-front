@@ -1,8 +1,8 @@
 import React from 'react'
-import { MovieType } from '../../types/Movie'
+import { MovieProps } from '../../types/MovieProps'
 
-const Movie: React.FC<MovieType> = () => {
-  return <div className="movie">Some movie</div>
+const Movie: React.FC<MovieProps> = ({ title }) => {
+  return <div className="movie">{title}</div>
 }
 
 export default Movie

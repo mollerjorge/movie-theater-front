@@ -3,10 +3,16 @@ import Movie from '../Movie'
 import { MovieListType } from '../../types/MovieList'
 
 const MovieList: React.FC<MovieListType> = ({ movieList }) => {
-  const displayMovieList = movieList.map(({ name, cover, voteAverage }) => (
+  const displayMovieList = movieList?.map(({
+    id,
+    title,
+    posterPath,
+    voteAverage
+  }) => (
     <Movie
-      name={name}
-      cover={cover}
+      key={id}
+      title={title}
+      posterPath={posterPath}
       voteAverage={voteAverage}
     />
   ))
