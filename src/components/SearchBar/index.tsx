@@ -1,11 +1,11 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 
 import './index.scss';
 
 type InputProps = {
   name: string;
   value: string;
-  onChange: (event: SyntheticEvent) => void;
+  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
 };
 
 const Input: React.FC<InputProps> = ({ name, value, onChange }) => {
