@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar'
 import MovieList from '../MovieList'
 import { MovieType } from '../../types/Movie'
 import { MovieListResponseType } from '../../types/MovieListResponse'
+import StyledHeader from '../Header'
 
 const FilterableMovieList = () => {
   const [searchBarValue, setSearchBarValue] = useState('')
@@ -45,19 +46,26 @@ const FilterableMovieList = () => {
   }, [])
 
   useEffect(() => {
-    debouncedGetMoviesByQuery();
+    if (searchBarValue) {
+      debouncedGetMoviesByQuery()
+    } else {
+      getMovieList()
+    }
   }, [searchBarValue, debouncedGetMoviesByQuery])
 
   return (
     <div className="filterable-movie-list">
-      <SearchBar
-        name="searchBar"
-        value={searchBarValue}
-        onChange={onChangeSearchBar}
-      />
+      <StyledHeader>
+        <SearchBar
+          name="searchBar"
+          value={searchBarValue}
+          onChange={onChangeSearchBar}
+        />
+      </StyledHeader>
+
       <MovieList movieList={movieList} />
     </div>
-  )
+  );
 }
 
 export default FilterableMovieList
