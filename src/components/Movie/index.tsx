@@ -1,9 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { MovieProps } from '../../types/MovieProps'
 import { useMoviesDispatch } from '../../context/movieContext'
 
-const Movie: React.FC<MovieProps> = ({ movie }) => {
+const Movie: React.FC<MovieProps> = ({ movie, className }) => {
   const dispatch = useMoviesDispatch()
   const history = useHistory()
 
@@ -14,7 +15,7 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
 
   if (movie.posterPath) {
     return (
-      <div className="movie">
+      <div className={`${className} movie`}>
         <button
           type="button"
           onClick={onMovieClick}
@@ -30,4 +31,12 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
   return <></>
 }
 
-export default Movie
+export default styled(Movie)`
+  button {
+    background: transparent;
+    border: 0px;
+    cursor: pointer;
+  }
+  
+
+`;

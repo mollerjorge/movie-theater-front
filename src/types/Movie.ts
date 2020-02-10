@@ -14,3 +14,11 @@ export type MovieType = {
   overview: string
   releaseDate: string
 }
+
+export type MovieDetailType = {
+  title: string
+  genres: []
+  posterPath: string
+  overview: string
+  voteAverage: number
+}
