@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+
 import HeaderBackground from '../../assets/pulp-fiction-bg.png'
 import StyledNavBar from '../Navbar'
 
@@ -30,23 +31,23 @@ const StyledHeader = styled(Header)`
 
     .mt-header {
       &__search-bar-container {
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        max-width: 80rem;
-        margin: auto;
         margin-top: 4rem;
+        margin: auto;
+        max-width: 80rem;
 
         h1 {
+          color: white;
           font-size: 4.5rem;
           font-weight: 900;
-          color: white;
           margin-bottom: .5rem;
         }
         h2 {
+          color: #C2D1C9;
           font-size: 3.5rem;
           font-weight: 500;
-          color: #C2D1C9;
           margin-top: .5rem;
         }
       }
