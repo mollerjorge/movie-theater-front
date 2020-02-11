@@ -39,7 +39,8 @@
         "maximum": 1,
         "when": "always"
       }
-    ]
+    ],
+    "click-events-have-key-events": 0
   },
   "settings": {
     "import/resolver": {

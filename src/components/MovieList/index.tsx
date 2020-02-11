@@ -5,18 +5,8 @@ import { MovieListType } from '../../types/MovieList'
 
 
 const MovieList: React.FC<MovieListType> = ({ movieList, className }) => {
-  const displayMovieList = movieList?.map(({
-    id,
-    title,
-    posterPath,
-    voteAverage
-  }) => (
-    <Movie
-      key={id}
-      title={title}
-      posterPath={posterPath}
-      voteAverage={voteAverage}
-    />
+  const displayMovieList = movieList?.map((movie) => (
+      <Movie movie={movie} />
   ))
   return (
     <div className={`${className} container`}>

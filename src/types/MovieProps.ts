@@ -1,6 +1,6 @@
+import { MovieType } from './Movie'
+
 export type MovieProps = {
-  key: number
-  title: string
-  voteAverage: number
-  posterPath: string
+  movie: MovieType
+  className?: string
 }
