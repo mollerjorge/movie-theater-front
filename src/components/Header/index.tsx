@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FormattedMessage } from 'react-intl'
+
+import StyledNavBar from '../Navbar'
 
 import HeaderBackground from '../../assets/pulp-fiction-bg.png'
-import StyledNavBar from '../Navbar'
 
 type Header = {
   className?: string
@@ -15,9 +17,14 @@ const Header: React.FC<Header> = ({ className, children }) => {
         <StyledNavBar />
 
         <div className="mt-header__search-bar-container">
-          <h1>Your favourites movies. Explained</h1>
-          <h2>Figured out what happened. Then find out why.</h2>
-          {children}</div>
+          <h1>
+            <FormattedMessage id="heroTitle" />
+          </h1>
+          <h2>
+            <FormattedMessage id="heroLegend" />
+          </h2>
+          {children}
+        </div>
       </div>
     </header>
   );
@@ -51,9 +58,7 @@ const StyledHeader = styled(Header)`
           margin-top: .5rem;
         }
       }
-
     }
-
 `;
 
 export default StyledHeader

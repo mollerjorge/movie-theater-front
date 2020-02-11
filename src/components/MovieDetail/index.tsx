@@ -1,53 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
+import { FormattedMessage } from 'react-intl'
+import MovieDBApiService from '../../services/MovieDBApiService'
+import { MovieDetailType } from '../../types/Movie'
 // import { useMoviesState } from '../../context/movieContext'
-import MovieDBApiService from '../../services/MovieDBApiService';
-import { MovieDetailType } from '../../types/Movie';
 
-import Loading from '../Loading';
-import StyledMovieDetail from './styles';
+import Loading from '../Loading'
+import StyledMovieDetail from './styles'
 
 type Params = {
-  id?: string | undefined;
-};
+  id?: string | undefined
+}
 
 const MovieDetail = ({ className }: { className?: string }) => {
-  const params: Params = useParams();
-  const history = useHistory();
   // If we want to access our movies from context we can do it by calling context.movies
   // It's a neat way of using global state instead of using redux
   // const context = useMoviesState()
-  const [movie, setMovie] = useState<MovieDetailType | null>(null);
+  const params: Params = useParams()
+  const history = useHistory()
+  const [movie, setMovie] = useState<MovieDetailType | null>(null)
   const [movieCredits, setMovieCredits] = useState<{
-    cast: { name: string }[];
-  } | null>(null);
-  const [loading, setLoading] = useState(true);
+    cast: { name: string }[]
+  } | null>(null)
+  const [loading, setLoading] = useState(true)
 
   const getMovieById = async () => {
     const getMovieByIdResponse: MovieDetailType = await MovieDBApiService.retrieve(
       'movie',
       params.id
-    );
-    setMovie(getMovieByIdResponse);
-  };
+    )
+    setMovie(getMovieByIdResponse)
+  }
 
   const getMovieCreditsById = async () => {
     const getMovieCreditsByIdResponse = await MovieDBApiService.list(
       `movie/${params.id}/credits`
-    );
-    setMovieCredits(getMovieCreditsByIdResponse);
-  };
+    )
+    setMovieCredits(getMovieCreditsByIdResponse)
+  }
 
   useEffect(() => {
-    getMovieById();
-    getMovieCreditsById();
-  }, []);
+    getMovieById()
+    getMovieCreditsById()
+  }, [])
 
   useEffect(() => {
     if (movie) {
       setLoading(false)
     }
-  }, [movie]);
+  }, [movie])
 
   const displayMovieGenres = movie?.genres.map(
     (genre: { name: string }, index: number) => {
@@ -60,13 +61,13 @@ const MovieDetail = ({ className }: { className?: string }) => {
             ''
           )}
         </span>
-      );
+      )
     }
-  );
+  )
 
   const goToDiscoverView = () => {
-    history.push('/');
-  };
+    history.push('/')
+  }
 
   return (
     <StyledMovieDetail>
@@ -95,12 +96,16 @@ const MovieDetail = ({ className }: { className?: string }) => {
                 alt="movie poster"
               />
               <div className="movie-detail__about-box">
-                <h3>About the movie</h3>
+                <h3>
+                  <FormattedMessage id="aboutTheMovie" />
+                </h3>
                 <p>{movie?.overview}</p>
 
                 <div className="movie-detail__more-info">
                   <div className="movie-detail__actors">
-                    <h3>Actors</h3>
+                    <h3>
+                      <FormattedMessage id="actors" />
+                    </h3>
                     {movieCredits?.cast.map(actor => (
                       <span>{actor.name}</span>
                     ))}
@@ -113,7 +118,7 @@ const MovieDetail = ({ className }: { className?: string }) => {
         {loading && <Loading />}
       </div>
     </StyledMovieDetail>
-  );
-};
+  )
+}
 
-export default MovieDetail;
+export default MovieDetail

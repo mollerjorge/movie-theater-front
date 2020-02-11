@@ -10,6 +10,7 @@ const Movie: React.FC<MovieProps> = ({ movie, className }) => {
   const onMovieClick = () => {
     history.push(`/movie/${movie.id}`)
   }
+  
   if (movie.posterPath) {
     // Only show movies with images, for some reason MovieDBApi has movies with no images
     return (

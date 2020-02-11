@@ -8,6 +8,7 @@ type Action = {
 type Dispatch = (action: Action) => void;
 type State = { movies: MovieType[] | undefined };
 type MoviesProviderProps = { children: React.ReactNode };
+
 const MoviesStateContext = React.createContext<State | undefined>(undefined);
 const MoviesDispatchContext = React.createContext<Dispatch | undefined>(
   undefined

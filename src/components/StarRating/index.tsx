@@ -1,6 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from 'react'
 import styled from 'styled-components'
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl'
 
 type StarRatingProps = {
   className?: string
@@ -10,7 +15,7 @@ type StarRatingProps = {
 }
 
 const STAR_ACTIVE_BACKGROUND_COLOR = '#f3d818'
-const STAR_INACTIVE_BACKGROUND_COLOR = 'gray'
+const STAR_INACTIVE_BACKGROUND_COLOR = '#c3c3c3'
 
 const StarRating: React.FC<StarRatingProps> = (
   {
@@ -25,11 +30,11 @@ const StarRating: React.FC<StarRatingProps> = (
   
   const hoverHandler = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>): void => {
     const target = event.target as HTMLSpanElement
-    const stars = target.parentElement.getElementsByClassName('rating__star')
-    const hoverValue = target.dataset.value
+    const stars = target?.parentElement.getElementsByClassName('rating__star')
+    const hoverValue = target?.dataset?.value
     Array.from(stars).forEach(star => {
       const currStar = star as HTMLElement
-      currStar.style.color = hoverValue >= currStar.dataset.value
+      currStar.style.color = hoverValue >= currStar?.dataset?.value
         ? STAR_ACTIVE_BACKGROUND_COLOR
         : STAR_INACTIVE_BACKGROUND_COLOR
     })
@@ -37,15 +42,15 @@ const StarRating: React.FC<StarRatingProps> = (
   }
 
   const setRating = useCallback((): void => {
-    const stars = ratingRef.current.getElementsByClassName('rating__star');
+    const stars = ratingRef.current.getElementsByClassName('rating__star')
     Array.from(stars).forEach(star => {
-      const currStar = star as HTMLElement;
+      const currStar = star as HTMLElement
       currStar.style.color =
         currentRating >= currStar.dataset.value
           ? STAR_ACTIVE_BACKGROUND_COLOR
-          : STAR_INACTIVE_BACKGROUND_COLOR;
-    });
-  }, [currentRating]); 
+          : STAR_INACTIVE_BACKGROUND_COLOR
+    })
+  }, [currentRating]) 
 
   const starClickHandler = (
     event: React.MouseEvent<HTMLSpanElement, MouseEvent>
@@ -118,10 +123,9 @@ export default styled(StarRating)`
     }
 
     &__wrapper {
+      align-items: center;
       display: flex;
       justify-content: center;
-      align-items: center;
     }
   }
-
 `;

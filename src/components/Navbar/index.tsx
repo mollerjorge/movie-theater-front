@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+
 import { ReactComponent as Logo } from '../../assets/fixus-logo.svg'
 
 type NavbarProps = {

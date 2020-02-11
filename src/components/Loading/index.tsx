@@ -1,8 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { FormattedMessage } from 'react-intl'
 
-const Loading = ({ className, position }: { className?: string, position?: string }) => (
-  <div className={className}>Loading...</div>
+const Loading = ({ className }: { className?: string, position?: string }) => (
+  <div className={className}>
+    <FormattedMessage id="loading" />
+  </div>
 )
 
 export default styled(Loading)`

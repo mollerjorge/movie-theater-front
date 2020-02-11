@@ -14,7 +14,7 @@ type SearchBarProps = {
 const isSearchValueEqual = (
   prevProps: SearchBarProps,
   nextProps: SearchBarProps
-) => prevProps.value === nextProps.value;
+) => prevProps.value === nextProps.value
 
 const SearchBar: React.FC<SearchBarProps> = React.memo((
   {
@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = React.memo((
     onChange,
     className
   }) => {
-  const intl = useIntl();
+  const intl = useIntl()
   return (
     <div className={`${className} mt-searchbar`}>
       <SearchIcon className="mt-searchbar__search-icon" />
@@ -35,8 +35,8 @@ const SearchBar: React.FC<SearchBarProps> = React.memo((
         placeholder={intl.formatMessage({ id: 'searchBarPlaceholder' })}
       />
     </div>
-  );
-}, isSearchValueEqual);
+  )
+}, isSearchValueEqual)
 
 
 export default styled(SearchBar)`

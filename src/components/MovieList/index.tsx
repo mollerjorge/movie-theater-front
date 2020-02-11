@@ -1,7 +1,9 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+
 import Movie from '../Movie'
+
 import { MovieListType } from '../../types/MovieList'
 
 const isMovieListEqual = (
@@ -30,8 +32,7 @@ const MovieList: React.FC<MovieListType> = React.memo(({ movieList, className })
 
 export default styled(MovieList)`
   .mt-movie-list-grid {
-    background-color: var(--white);
-    color: #444;
+    background-color: ${props => props.theme.white};
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;

@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
+import { FormattedMessage } from 'react-intl'
 
 type ErrorBoundaryProps = {
   children: ReactNode
@@ -7,7 +8,10 @@ type ErrorBoundaryState = {
   hasError: boolean
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { hasError: false }
@@ -21,7 +25,12 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     const { hasError } = this.state
     const { children } = this.props
 
-    if (hasError) return <h1>There was an error when trying to render the components</h1>
+    if (hasError)
+      return (
+        <h1>
+          <FormattedMessage id="errorBoundaryMessage" />
+        </h1>
+      )
 
     return children
   }
