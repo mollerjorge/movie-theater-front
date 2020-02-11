@@ -40,7 +40,9 @@
         "when": "always"
       }
     ],
-    "click-events-have-key-events": 0
+    "click-events-have-key-events": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "no-param-reassign": 0
   },
   "settings": {
     "import/resolver": {

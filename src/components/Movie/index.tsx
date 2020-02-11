@@ -1,19 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+
 import { MovieProps } from '../../types/MovieProps'
-import { useMoviesDispatch } from '../../context/movieContext'
 
 const Movie: React.FC<MovieProps> = ({ movie, className }) => {
-  const dispatch = useMoviesDispatch()
   const history = useHistory()
 
   const onMovieClick = () => {
     history.push(`/movie/${movie.id}`)
-    dispatch({ type: 'SET_SELECTED_MOVIE', payload: { selectedMovie: movie } });
   }
-
   if (movie.posterPath) {
+    // Only show movies with images, for some reason MovieDBApi has movies with no images
     return (
       <div className={`${className} movie`}>
         <button
@@ -37,6 +35,4 @@ export default styled(Movie)`
     border: 0px;
     cursor: pointer;
   }
-  
-
 `;

@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
+import { ThemeProvider } from 'styled-components'
 import { IntlProvider } from 'react-intl'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import flatten from 'flat'
 import AppLocale from './languageProvider'
-import FilterableMovieList from './components/FilterableMovieList'
-import MovieDetail from './components/MovieDetail'
-import GlobalStyles from './helpers/globalStyle'
+import GlobalStyles from './settings/globalStyle'
 import { MoviesProvider } from './context/movieContext'
+import theme from './settings/theme'
+
+import ErrorBoundary from './components/ErrorBoundary'
+import Loading from './components/Loading'
+
+const FilterableMovieList = lazy(() => import('./components/FilterableMovieList'));
+const MovieDetail = lazy(() => import('./components/MovieDetail'));
 
 const App = () => {
   const currentLocale: string = navigator.language
@@ -14,22 +20,28 @@ const App = () => {
 
   return (
     <Router>
-      <MoviesProvider>
-        <IntlProvider
-          locale={currentLocale}
-          messages={flatten(currentAppLocale.messages)}
-        >
-          <GlobalStyles />
-          <Switch>
-            <Route exact path="/">
-              <FilterableMovieList />
-            </Route>
-            <Route path="/movie/:id">
-              <MovieDetail />
-            </Route>
-          </Switch>
-        </IntlProvider>
-      </MoviesProvider>
+      <ThemeProvider theme={theme}>
+        <MoviesProvider>
+          <IntlProvider
+            locale={currentLocale}
+            messages={flatten(currentAppLocale.messages)}
+          >
+            <GlobalStyles />
+            <ErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <Switch>
+                  <Route exact path="/">
+                    <FilterableMovieList />
+                  </Route>
+                  <Route path="/movie/:id">
+                    <MovieDetail />
+                  </Route>
+                </Switch>
+              </Suspense>
+            </ErrorBoundary>
+          </IntlProvider>
+        </MoviesProvider>
+      </ThemeProvider>
     </Router>
   );
 }

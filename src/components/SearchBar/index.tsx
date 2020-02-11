@@ -1,9 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl'
 import styled from 'styled-components'
-import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
 
-import './index.scss';
+import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
 
 type SearchBarProps = {
   name: string
@@ -12,7 +11,18 @@ type SearchBarProps = {
   className?: string
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({ name, value, onChange, className }) => {
+const isSearchValueEqual = (
+  prevProps: SearchBarProps,
+  nextProps: SearchBarProps
+) => prevProps.value === nextProps.value;
+
+const SearchBar: React.FC<SearchBarProps> = React.memo((
+  {
+    name,
+    value,
+    onChange,
+    className
+  }) => {
   const intl = useIntl();
   return (
     <div className={`${className} mt-searchbar`}>
@@ -26,20 +36,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ name, value, onChange, className 
       />
     </div>
   );
-};
+}, isSearchValueEqual);
 
 
 export default styled(SearchBar)`
-  position: relative;
   margin-top: 2.5rem;
+  position: relative;
   .mt-searchbar {
     &__input {
-      width: 40rem;
-      height: 4rem;
       border-radius: 10rem;
       border: 1px solid #c3c3c3;
-      text-indent: 4.5rem;
       font-size: 1.8rem;
+      height: 4rem;
+      text-indent: 4.5rem;
+      width: 40rem;
 
       &::placeholder {
         font-style: italic;
@@ -47,10 +57,10 @@ export default styled(SearchBar)`
     }
 
     &__search-icon {
-      width: 2rem;
-      position: absolute;
       left: 1.3rem;
+      position: absolute;
       top: 1.3rem;
+      width: 2rem;
     }
   }
 `;
