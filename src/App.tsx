@@ -30,7 +30,10 @@ const App = () => {
             <ErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <Switch>
-                  <Route exact path="/">
+                  <Route
+                    exact
+                    path="/"
+                  >
                     <FilterableMovieList />
                   </Route>
                   <Route path="/movie/:id">
