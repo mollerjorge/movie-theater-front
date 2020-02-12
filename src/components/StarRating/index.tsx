@@ -22,29 +22,27 @@ const StarRating: React.FC<StarRatingProps> = (
 ) => {
   const [currentRating, setCurrentRating] = useState(currRatingProps)
   const ratingRef = useRef(null)
+
+  const addStarsColor = (stars: HTMLCollectionOf<Element>, ratingValue: string) => {
+    Array.from(stars).forEach(star => {
+      const currStar = star as HTMLElement | { style: {color: string }, dataset: { value: string }};
+      currStar.style.color =
+        ratingValue >= currStar?.dataset?.value
+          ? STAR_ACTIVE_BACKGROUND_COLOR
+          : STAR_INACTIVE_BACKGROUND_COLOR;
+    });
+  }
   
   const hoverHandler = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>): void => {
     const target = event.target as HTMLSpanElement
     const stars = target.parentElement.getElementsByClassName('rating__star')
     const hoverValue = target.dataset.value
-    Array.from(stars).forEach(star => {
-      const currStar = star as HTMLElement
-      currStar.style.color = hoverValue >= currStar.dataset.value
-        ? STAR_ACTIVE_BACKGROUND_COLOR
-        : STAR_INACTIVE_BACKGROUND_COLOR
-    })
-  
+    addStarsColor(stars, hoverValue || '0')
   }
 
   const setRating = useCallback((): void => {
     const stars = ratingRef.current.getElementsByClassName('rating__star');
-    Array.from(stars).forEach(star => {
-      const currStar = star as HTMLElement;
-      currStar.style.color =
-        currentRating >= currStar.dataset.value
-          ? STAR_ACTIVE_BACKGROUND_COLOR
-          : STAR_INACTIVE_BACKGROUND_COLOR;
-    });
+    addStarsColor(stars, currentRating)
   }, [currentRating]); 
 
   const starClickHandler = (
