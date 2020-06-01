@@ -28,4 +28,3 @@ This project was bootstrapped with [Create React App]
 4. Storybook to make isolated component stories 📕
 5. Follow gitflow properly 🌳
 
-Thanks for your time, hope you enjoy the reading 🤓
